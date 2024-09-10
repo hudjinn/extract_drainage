@@ -3,11 +3,6 @@
 # Nome do diretório do ambiente virtual
 VENV_DIR="venv"
 
-# Instala o SAGA GIS usando apt-get
-echo "Instalando SAGA GIS..."
-sudo apt-get update
-sudo apt-get install -y saga python3
-
 # Verifica se o diretório do venv já existe
 if [ ! -d "$VENV_DIR" ]; then
     echo "Criando o ambiente virtual..."
@@ -25,5 +20,10 @@ if [ -f "requirements.txt" ]; then
 else
     echo "Arquivo requirements.txt não encontrado."
 fi
+
+# Instala o SAGA GIS usando apt-get
+echo "Instalando SAGA GIS..."
+# sudo apt-get update
+sudo apt-get install -y saga  # python3
 
 echo "Ambiente virtual configurado e dependências instaladas."

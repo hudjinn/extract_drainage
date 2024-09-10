@@ -2,7 +2,6 @@
 ETAPAS
 
 Tratar DEM (fill sinks, fill depressions etc)
-
 Extrair Bacias, sub-bacias
 Extrair drenagem com coordenada Z e Classificação Strahler
 Criar codificacao levando em consideração a bacia, a ordem de strahler e fluxo de acumulação
@@ -10,6 +9,7 @@ Alinhar drenagens de acordo com barragens (snap)
 Detectar angulos de 90º e suavizar
 Exportar como vetor
 """
+
 import os
 import subprocess
 
@@ -67,9 +67,6 @@ def flow_accumulation(dem, output):
 
     return flow_accum
 
-
-
-
 if __name__ == '__main__':
     nosink_dem = sink_removal(dem, output)
     noflat_dem = flat_detection(nosink_dem, output)
@@ -79,5 +76,3 @@ if __name__ == '__main__':
     channel_drainage_basins(noflat_dem, output)
     
     drainage = os.path.join(output, 'drainage.shp')
-    
-
