@@ -30,11 +30,10 @@ def channel_drainage_basins(dem, output):
              BASINS=os.path.join(output, 'basins.shp'),
              NODES=os.path.join(output, 'nodes.shp'),
              THRESHOLD=3)
-    
+
 
 if __name__ == '__main__':
     for dem in dem_list:
-
         dem_path = os.path.join(input_dir, dem)
         output_iter = os.path.join(output, dem[:5])
         if not os.path.exists(output_iter):
@@ -42,4 +41,4 @@ if __name__ == '__main__':
         print('Salvando em: ', output_iter)
         
         nosink_dem = sink_removal(filename=dem, dem=dem_path, output=output)
-        channel_drainage_basins(dem=nosink_dem, output=output_iter)
+        # channel_drainage_basins(dem=nosink_dem, output=output_iter)
