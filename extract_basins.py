@@ -60,7 +60,7 @@ for index, row in exutorios.iterrows():
 
     # Alterar valor NoData no arquivo de saída
     if os.path.exists(output_file):
-        clip_nodata(id_segmento, raster_path_to_clip=output_file)
+        clip_nodata(id_segmento, bacia, raster_path_to_clip=output_file)
     else:
         print(f'Erro ao criar o arquivo de saída: {output_file}')
 
