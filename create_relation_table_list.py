@@ -29,10 +29,10 @@ class FDP:
             return []
         lista_segmentos = [[segmento, self.get_upstream_features(segmento)] for segmento in segmentos_upstream]
         lista_flat = self.flatten(lista_segmentos)
-        df_temp = pd.DataFrame({'id_foz': id_segmento, 'id_nascente': lista_flat})
-
+        df_temp = pd.DataFrame({'id_foz': id_segmento, 'id_nascente': [lista_flat]})
+        
         # Gravar diretamente no arquivo CSV (append)
-        with open('output/lista_segmentos_jusante_montante.csv', 'a') as f:
+        with open('output/lista_segmentos_jusante_montante_lista.csv', 'a') as f:
             df_temp.to_csv(f, header=False, index=False)
         
         return lista_flat
