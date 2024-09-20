@@ -1,9 +1,5 @@
 import os
-import numpy as np
-import rasterio
-import rasterio.features
 import geopandas as gpd
-from rasterio.transform import from_origin
 from extract import run_saga
 from clip_raster import clip_nodata
 
@@ -30,10 +26,7 @@ files_dict = {
             }
 
 # Iterar sobre cada exutório
-exutorios = exutorios[exutorios['Bacia'] == 'Curu']
-
 for index, row in exutorios.iterrows():
-
     id_segmento = row.id_segmento  # ID único para salvar cada bacia separadamente
     geom = row.geometry  # Geometria do exutório
     x = geom.x  # Coordenada X
@@ -44,9 +37,14 @@ for index, row in exutorios.iterrows():
     output = os.path.abspath('output/basins/processed')
     output_path = os.path.join(output, f'dem_{bacia}')
     output_file = os.path.join(output_path, f'{str(id_segmento)}.sdat')
-
     dem_path = os.path.join(input_dir, f'nosink_dem_{bacia}.tif.sdat')
-    # Imprimir coordenadas e parâmetros para verificação
+    
+    # Testar se arquivo do exutório já existe em tif
+    if os.path.exists(os.path.join(output_path, f'{id_segmento}.tif')):
+        print(f'Arquivo {id_segmento}.tif encontrado. Pulando iteração...')
+        continue
+    
+    # Imprimir coordenadas e parâmetros para verificação    
     print(f'Processando exutório {id_segmento} nas coordenadas ({x}, {y})')
     print(f'Arquivo de saída: {output_file}')
 
