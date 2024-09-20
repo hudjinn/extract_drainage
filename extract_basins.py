@@ -38,12 +38,12 @@ for index, row in exutorios.iterrows():
     output_path = os.path.join(output, f'dem_{bacia}')
     output_file = os.path.join(output_path, f'{str(id_segmento)}.sdat')
     dem_path = os.path.join(input_dir, f'nosink_dem_{bacia}.tif.sdat')
-    
+
     # Testar se arquivo do exutório já existe em tif
     if os.path.exists(os.path.join(output_path, f'{id_segmento}.tif')):
         print(f'Arquivo {id_segmento}.tif encontrado. Pulando iteração...')
         continue
-    
+
     # Imprimir coordenadas e parâmetros para verificação    
     print(f'Processando exutório {id_segmento} nas coordenadas ({x}, {y})')
     print(f'Arquivo de saída: {output_file}')

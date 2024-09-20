@@ -1,6 +1,6 @@
 import rioxarray as rxr
 import os
-          
+
 def clip_nodata(id_segmento, bacia, raster_path_to_clip):
 
     if os.path.exists(raster_path_to_clip):
@@ -10,7 +10,7 @@ def clip_nodata(id_segmento, bacia, raster_path_to_clip):
             if file.startswith(str(id_segmento)):
                 os.remove(os.path.join(folder, file))
         print(f'Arquivo original deletado: {raster_path_to_clip}')
-        
+
         input = input.where(input > 0)
         input = input.dropna(dim='x',how='all')
         input = input.dropna(dim='y',how='all')
